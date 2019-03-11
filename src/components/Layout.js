@@ -16,6 +16,7 @@ const Website = styled.div`
 const WebsiteContent = styled.div`
   flex: 1;
   background-color: ${props => (props.dark ? "rgb(51,51,51)" : "white")};
+  padding-top: 1.5rem;
 `;
 
 export function Layout(props) {
