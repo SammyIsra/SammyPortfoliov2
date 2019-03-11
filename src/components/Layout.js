@@ -15,6 +15,7 @@ const Website = styled.div`
 
 const WebsiteContent = styled.div`
   flex: 1;
+  background-color: ${props => (props.dark ? "rgb(51,51,51)" : "white")};
 `;
 
 export function Layout(props) {
@@ -52,7 +53,7 @@ export function Layout(props) {
               ]}
             />
             <Header page={page} dark={theme === "dark"} />
-            <WebsiteContent>{children}</WebsiteContent>
+            <WebsiteContent dark={theme === "dark"}>{children}</WebsiteContent>
             <Footer dark={theme === "dark"} />
           </>
         )}

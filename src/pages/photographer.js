@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { graphql } from "gatsby";
 
 import { Layout } from "../components/Layout";
+import { Bio, BioBody, BioTitle } from "../components/Bio";
+import { WhiteFont, YellowFont } from "../components/Styles";
 
 function PhotographerPage({ data }) {
   const photos = data.allFlickrImage.edges.map(x => x.node);
@@ -13,22 +15,20 @@ function PhotographerPage({ data }) {
     "I'm all for trying new styles and formats, you never know what your next passion will be.";
   return (
     <Layout theme="dark" page="photographer">
-      <PhotographerBody>
-        <Bio>
-          <BioTitle>Sammy is a... Photographer</BioTitle>
-          <BioBody>{bioText}</BioBody>
-        </Bio>
-        <PhotoStream photos={photos} />
-      </PhotographerBody>
+      <Bio>
+        <BioTitle>
+          <YellowFont>Sammy is a... Photographer</YellowFont>
+        </BioTitle>
+        <BioBody>
+          <WhiteFont>{bioText}</WhiteFont>
+        </BioBody>
+      </Bio>
+      <PhotoStream photos={photos} />
     </Layout>
   );
 }
 
 export default PhotographerPage;
-
-const PhotographerBody = styled.div`
-  background-color: rgb(51, 51, 51);
-`;
 
 const PhotoStreamContainer = styled.div`
   line-height: 0;
@@ -61,25 +61,6 @@ const PhotoItemStyled = styled.img`
 
 const PhotoLink = styled.a`
   background-image: none;
-`;
-
-const Bio = styled.div`
-  width: 75%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-const BioTitle = styled.h2`
-  color: rgb(255, 204, 0);
-  font-size: 3rem;
-  line-height: 3rem;
-`;
-
-const BioBody = styled.p`
-  color: white;
-  font-size: 1.75rem;
-  line-height: 1.75rem;
 `;
 
 function PhotoStream({ photos }) {

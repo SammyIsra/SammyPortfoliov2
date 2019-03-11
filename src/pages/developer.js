@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby";
 import styled from "styled-components";
 
 import { Layout } from "../components/Layout";
+import { Bio, BioBody, BioTitle } from "../components/Bio";
 
 const DeveloperPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
@@ -10,7 +11,7 @@ const DeveloperPage = ({ data }) => {
     .filter(post => post.frontmatter.published);
 
   return (
-    <Layout theme="dark" page="developer">
+    <Layout theme="light" page="developer">
       <DeveloperBio />
       <Experiences posts={posts} />
     </Layout>
@@ -142,22 +143,6 @@ class PostsFilter extends React.Component {
     );
   }
 }
-
-const Bio = styled.div`
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-const BioTitle = styled.h2`
-  font-size: 3rem;
-  line-height: 3rem;
-`;
-
-const BioBody = styled.p`
-  font-size: 1.4rem;
-  line-height: 1.75rem;
-`;
 
 const PostContainer = styled.div`
   border-left: 0.2rem solid rgba(204, 204, 204, 0);

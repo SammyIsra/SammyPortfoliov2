@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 //Aditional rules I can't fix w styled components ☹️
-import "./Header.module.css";
+import "./Header.css";
 
 const HeaderContainer = styled.header`
   height: 100vh;
