@@ -11,8 +11,6 @@ const urlAllPhotos =
 exports.sourceNodes = function({ actions, createContentDigest }) {
   const { createNode } = actions;
 
-  console.log("getting flickr stuff?");
-
   return new Promise((resolve, reject) => {
     //All photos
     fetch(urlAllPhotos)
