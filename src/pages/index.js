@@ -11,9 +11,7 @@ const IndexPage = () => (
         A <Link to="/developer">Software Developer</Link>, a{" "}
         <Link to="/photographer">Photographer</Link>, a UCF Knight, a casual
         teacher and student, and sometimes a speaker too. <br />
-        If you'd like to contact me, feel free to&nbsp;
-        <a href="mailto:sammy.israwi@gmail.com">email</a> me or if you prefer,
-        DM me <a href="https://twitter.com/SammyIs_Me">@SammyIs_Me</a>. <br />
+        If you'd like to contact me, feel free to DM me <a href="https://twitter.com/SammyIs_Me">@SammyIs_Me</a>. <br />
         You can also get my resume from{" "}
         <a href="https://drive.google.com/file/d/0B1ouby1hW-sjSDdZSFYtUFB1TVE/view?usp=sharing">
           here
