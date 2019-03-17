@@ -11,7 +11,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "deploy:demo": "gatsby build&&surge ./public/ --domain sammyis-gdemo.surge.sh"
+    "deploy-demo": "gatsby build&&surge ./public/ --domain sammyis-gdemo.surge.sh"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
