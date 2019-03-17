@@ -23,6 +23,15 @@ module.exports = {
         path: `${__dirname}/src/posts`
       }
     },
-    "gatsby-transformer-remark"
+    "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-plugin-remote-images",
+      options: {
+        nodeType: "flickrImage",
+        imagePath: "url_l"
+      }
+    },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp"
   ]
 };

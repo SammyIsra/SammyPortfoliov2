@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import { Layout } from "../components/Layout";
 import { Bio, BioBody, BioTitle } from "../components/Bio";
@@ -73,19 +74,18 @@ function PhotoStream({ photos }) {
           src={x.url_m}
           address={x.address}
           title={x.title}
+          sharpPhoto={x.localImage}
         />
       ))}
     </PhotoStreamContainer>
   );
 }
 
-function PhotoItem({ src, address, title }) {
-  //const linkToOriginal = `https://www.flickr.com/photos/${owner}/${id}/`;
-  return (
-    <PhotoLink href={address} target="_blank">
-      <PhotoItemStyled src={src} alt={title} />
-    </PhotoLink>
-  );
+/**
+ * Component for displaying a single photo of the photo stream
+ */
+function PhotoItem({ sharpPhoto }) {
+  return <Img fluid={sharpPhoto.childImageSharp.fluid} />;
 }
 
 export const query = graphql`
@@ -103,6 +103,14 @@ export const query = graphql`
           height_l
           width_l
           title
+          localImage {
+            id
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
     }
