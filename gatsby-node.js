@@ -3,7 +3,7 @@ const path = require("path");
 const fetch = require("node-fetch");
 
 const urlAllPhotos =
-  "https://sammy-photos.herokuapp.com/api/photos?sortBy=date&limitTo=40";
+  "https://us-central1-photo-flick-d764c.cloudfunctions.net/getFlickPhotos?sortBy=date&limitTo=40";
 
 /**
  * Fetch data from my personal Flickr endpoint to get the pictures
