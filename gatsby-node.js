@@ -25,7 +25,7 @@ exports.sourceNodes = function({ actions, createContentDigest }) {
   });
 
   function processFlickrImageList(flickrItem, digest) {
-    console.log("Flickr:", flickrItem);
+    // console.log("Flickr:", flickrItem);
     return {
       ...flickrItem,
       address: `https://www.flickr.com/photos/${flickrItem.owner}/${
@@ -55,9 +55,9 @@ exports.onCreateNode = function({ node, getNode, actions }) {
 };
 
 exports.createPages = function({ graphql, actions }) {
-  const { createPage } = actions;
+  return new Promise((resolve, reject) => {
+    const { createPage } = actions;
 
-  return new Promise(resolve => {
     graphql(`
       {
         allMarkdownRemark {
@@ -70,18 +70,22 @@ exports.createPages = function({ graphql, actions }) {
           }
         }
       }
-    `).then(result => {
-      console.log(result);
-      result.data.allMarkdownRemark.edges.forEach(({ node }) =>
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve("./src/templates/blog-post.js"),
-          context: {
-            slug: node.fields.slug
-          }
-        })
-      );
-      resolve();
-    });
+    `)
+      .then(result => {
+        result.data.allMarkdownRemark.edges.forEach(({ node }) =>
+          createPage({
+            path: node.fields.slug,
+            component: path.resolve("./src/templates/blog-post.js"),
+            context: {
+              slug: node.fields.slug
+            }
+          })
+        );
+        resolve();
+      })
+      .catch(error => {
+        console.error("Error on createPages", error);
+        reject(error);
+      });
   });
 };
