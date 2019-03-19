@@ -28,7 +28,7 @@ module.exports = {
       resolve: "gatsby-plugin-remote-images",
       options: {
         nodeType: "flickrImage",
-        imagePath: "url_l"
+        imagePath: "url_m" // Use the 'medium' sized image for the pictures in the photostream
       }
     },
     "gatsby-transformer-sharp",
