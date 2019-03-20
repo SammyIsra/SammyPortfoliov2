@@ -49,7 +49,6 @@ const PhotoStreamContainer = styled.div`
 `;
 
 const StyledImg = styled(Img)`
-  max-width: 100%;
   width: 100%;
   opacity: 1;
   margin-bottom: 0;
@@ -87,7 +86,7 @@ function PhotoStream({ photos }) {
 function PhotoItem({ sharpPhoto, address, title }) {
   return (
     <PhotoLink target="_blank" href={address}>
-      <StyledImg fluid={sharpPhoto.childImageSharp.fluid} alt={title} />
+      <StyledImg fixed={sharpPhoto.childImageSharp.fixed} alt={title} />
     </PhotoLink>
   );
 }
@@ -110,8 +109,8 @@ export const query = graphql`
           localImage {
             id
             childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
+              fixed(width: 600) {
+                ...GatsbyImageSharpFixed
               }
             }
           }
