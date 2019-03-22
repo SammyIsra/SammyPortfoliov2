@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import Masonry from "react-masonry-component";
 
 import { Layout } from "../components/Layout";
 import { Bio, BioBody, BioTitle } from "../components/Bio";
@@ -40,7 +41,7 @@ const PhotoStreamContainer = styled.div`
   margin-right: auto;
   column-count: 3;
   column-gap: 0px;
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     column-count: 2;
   }
   @media (max-width: 600px) {
@@ -48,14 +49,32 @@ const PhotoStreamContainer = styled.div`
   }
 `;
 
-const StyledImg = styled(Img)`
+const PhotoMasonryStream = styled(Masonry)`
+  width: 85%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const PhotoMasonryContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
   width: 100%;
+`;
+
+const StyledImg = styled(Img)`
+  max-width: 100%;
+  max-height: 100%;
   opacity: 1;
   margin-bottom: 0;
   background-color: white;
   transition: opacity 0.5s;
   &:hover {
     opacity: 0.75;
+  }
+  > picture {
+    object-fit: scale-down;
   }
 `;
 
@@ -65,7 +84,7 @@ const PhotoLink = styled.a`
 
 function PhotoStream({ photos }) {
   return (
-    <PhotoStreamContainer>
+    <PhotoMasonryStream options={{ transitionDuration: 0 }}>
       {photos.map(x => (
         <PhotoItem
           key={x.id}
@@ -76,7 +95,7 @@ function PhotoStream({ photos }) {
           sharpPhoto={x.localImage}
         />
       ))}
-    </PhotoStreamContainer>
+    </PhotoMasonryStream>
   );
 }
 
@@ -109,8 +128,11 @@ export const query = graphql`
           localImage {
             id
             childImageSharp {
-              fixed(width: 600) {
+              fixed(width: 400) {
                 ...GatsbyImageSharpFixed
+              }
+              fluid(maxWidth: 1200) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
