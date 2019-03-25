@@ -60,7 +60,6 @@ const PhotoMasonryStream = styled(Masonry)`
 const StyledImg = styled(Img)`
   /* max-width: 100%; */
   /* max-height: 100%; */
-  width: 100%;
   opacity: 1;
   margin-bottom: 0;
   background-color: white;
@@ -115,20 +114,18 @@ function PhotoStream({ photos }) {
  */
 function PhotoItem({ sharpPhoto, address, title }) {
   return (
-    <PhotoLink target="_blank" href={address}>
-      <StyledImg
-        fixed={sharpPhoto.childImageSharp.fixed}
-        alt={title}
-        style={{ display: "block" }}
-      />
-      {/* <StyledImg
-        fluid={sharpPhoto.childImageSharp.fixed}
-        alt={title}
-        style={{ display: "block" }}
-        imgStyle={{ minHeight: "3rem", maxHeight: "4rem" }}
-        placeholderStyle={{ minHeight: "3rem", maxHeight: "4rem" }}
-      /> */}
-    </PhotoLink>
+    <StyledImg
+      fluid={sharpPhoto.childImageSharp.fixed}
+      alt={title}
+      style={{ display: "block" }}
+    />
+    // <PhotoLink target="_blank" href={address}>
+    //   {/* <StyledImg
+    //     fixed={sharpPhoto.childImageSharp.fixed}
+    //     alt={title}
+    //     style={{ display: "block" }}
+    //   /> */}
+    // </PhotoLink>
   );
 }
 
