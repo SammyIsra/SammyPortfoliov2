@@ -116,7 +116,7 @@ function PhotoItem({ sharpPhoto, address, title }) {
   return (
     <PhotoLink target="_blank" href={address}>
       <StyledImg
-        fluid={sharpPhoto.childImageSharp.fixed}
+        fluid={sharpPhoto.childImageSharp.fluid}
         alt={title}
         style={{ display: "block" }}
       />
