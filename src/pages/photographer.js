@@ -114,18 +114,18 @@ function PhotoStream({ photos }) {
  */
 function PhotoItem({ sharpPhoto, address, title }) {
   return (
-    <StyledImg
-      fluid={sharpPhoto.childImageSharp.fixed}
-      alt={title}
-      style={{ display: "block" }}
-    />
-    // <PhotoLink target="_blank" href={address}>
+    <PhotoLink target="_blank" href={address}>
+      <StyledImg
+        fluid={sharpPhoto.childImageSharp.fixed}
+        alt={title}
+        style={{ display: "block" }}
+      />
+    </PhotoLink>
     //   {/* <StyledImg
     //     fixed={sharpPhoto.childImageSharp.fixed}
     //     alt={title}
     //     style={{ display: "block" }}
     //   /> */}
-    // </PhotoLink>
   );
 }
 
