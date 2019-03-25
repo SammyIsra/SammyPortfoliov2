@@ -57,15 +57,10 @@ const PhotoMasonryStream = styled(Masonry)`
   margin-right: auto;
 `;
 
-const PhotoMasonryContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
-`;
-
 const StyledImg = styled(Img)`
-  max-width: 100%;
-  max-height: 100%;
+  /* max-width: 100%; */
+  /* max-height: 100%; */
+  width: 100%;
   opacity: 1;
   margin-bottom: 0;
   background-color: white;
@@ -73,18 +68,34 @@ const StyledImg = styled(Img)`
   &:hover {
     opacity: 0.75;
   }
-  > picture {
-    object-fit: scale-down;
+`;
+
+const PhotoFlexStream = styled.div`
+  margin: auto;
+  max-width: 95%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: flex-start;
+  @media screen and (min-width: 900px) {
+    max-width: 85%;
   }
 `;
 
 const PhotoLink = styled.a`
+  display: inline-block;
   background-image: none;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  margin-right: 0.4rem;
+  margin-bottom: 0.4rem;
 `;
 
 function PhotoStream({ photos }) {
   return (
-    <PhotoMasonryStream options={{ transitionDuration: 0 }}>
+    <PhotoFlexStream>
       {photos.map(x => (
         <PhotoItem
           key={x.id}
@@ -95,7 +106,7 @@ function PhotoStream({ photos }) {
           sharpPhoto={x.localImage}
         />
       ))}
-    </PhotoMasonryStream>
+    </PhotoFlexStream>
   );
 }
 
@@ -105,7 +116,18 @@ function PhotoStream({ photos }) {
 function PhotoItem({ sharpPhoto, address, title }) {
   return (
     <PhotoLink target="_blank" href={address}>
-      <StyledImg fixed={sharpPhoto.childImageSharp.fixed} alt={title} />
+      <StyledImg
+        fixed={sharpPhoto.childImageSharp.fixed}
+        alt={title}
+        style={{ display: "block" }}
+      />
+      {/* <StyledImg
+        fluid={sharpPhoto.childImageSharp.fixed}
+        alt={title}
+        style={{ display: "block" }}
+        imgStyle={{ minHeight: "3rem", maxHeight: "4rem" }}
+        placeholderStyle={{ minHeight: "3rem", maxHeight: "4rem" }}
+      /> */}
     </PhotoLink>
   );
 }
@@ -128,11 +150,12 @@ export const query = graphql`
           localImage {
             id
             childImageSharp {
-              fixed(width: 400) {
+              fixed(height: 300) {
                 ...GatsbyImageSharpFixed
               }
-              fluid(maxWidth: 1200) {
+              fluid(maxHeight: 500) {
                 ...GatsbyImageSharpFluid
+                presentationWidth
               }
             }
           }
