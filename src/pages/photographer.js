@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
-import Masonry from "react-masonry-component";
 
 import { Layout } from "../components/Layout";
 import { Bio, BioBody, BioTitle } from "../components/Bio";
 import { WhiteFont, YellowFont } from "../components/Styles";
 
-function PhotographerPage({ data }) {
+export default function PhotographerPage({ data }) {
   const photos = data.allFlickrImage.edges.map(x => x.node);
   const bioText =
     "Even though I am a developer by trade, I have an intense passion for photography. " +
@@ -30,38 +29,12 @@ function PhotographerPage({ data }) {
   );
 }
 
-export default PhotographerPage;
-
-const PhotoStreamContainer = styled.div`
-  line-height: 0;
-  width: 85%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  column-count: 3;
-  column-gap: 0px;
-  @media (max-width: 1200px) {
-    column-count: 2;
-  }
-  @media (max-width: 600px) {
-    column-count: 1;
-  }
-`;
-
-const PhotoMasonryStream = styled(Masonry)`
-  width: 85%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
 const StyledImg = styled(Img)`
   /* max-width: 100%; */
   /* max-height: 100%; */
+  width: 15rem;
+  height: 15rem;
   opacity: 1;
-  margin-bottom: 0;
   background-color: white;
   transition: opacity 0.5s;
   &:hover {
@@ -69,32 +42,29 @@ const StyledImg = styled(Img)`
   }
 `;
 
-const PhotoFlexStream = styled.div`
+const PhotoGridStream = styled.div`
   margin: auto;
   max-width: 95%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: stretch;
-  align-content: flex-start;
+  display: grid;
+  grid-gap: 0.35rem;
+  grid-template-columns: repeat(auto-fit, 15rem);
   @media screen and (min-width: 900px) {
     max-width: 85%;
   }
 `;
 
 const PhotoLink = styled.a`
+  width: 15rem;
+  height: 15rem;
   display: inline-block;
   background-image: none;
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  margin-right: 0.4rem;
-  margin-bottom: 0.4rem;
+  overflow: hidden;
+  object-fit: cover;
 `;
 
 function PhotoStream({ photos }) {
   return (
-    <PhotoFlexStream>
+    <PhotoGridStream>
       {photos.map(x => (
         <PhotoItem
           key={x.id}
@@ -105,7 +75,7 @@ function PhotoStream({ photos }) {
           sharpPhoto={x.localImage}
         />
       ))}
-    </PhotoFlexStream>
+    </PhotoGridStream>
   );
 }
 
@@ -115,17 +85,8 @@ function PhotoStream({ photos }) {
 function PhotoItem({ sharpPhoto, address, title }) {
   return (
     <PhotoLink target="_blank" href={address}>
-      <StyledImg
-        fluid={sharpPhoto.childImageSharp.fluid}
-        alt={title}
-        style={{ display: "block" }}
-      />
+      <StyledImg fluid={sharpPhoto.childImageSharp.fluid} alt={title} />
     </PhotoLink>
-    //   {/* <StyledImg
-    //     fixed={sharpPhoto.childImageSharp.fixed}
-    //     alt={title}
-    //     style={{ display: "block" }}
-    //   /> */}
   );
 }
 
@@ -147,9 +108,6 @@ export const query = graphql`
           localImage {
             id
             childImageSharp {
-              fixed(height: 300) {
-                ...GatsbyImageSharpFixed
-              }
               fluid(maxHeight: 500) {
                 ...GatsbyImageSharpFluid
                 presentationWidth

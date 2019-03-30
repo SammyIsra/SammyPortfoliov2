@@ -5,19 +5,6 @@ import { graphql, StaticQuery } from "gatsby";
 
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-//import "./index.css";
-
-const Website = styled.div`
-  display: flex;
-  flex-flow: column;
-  min-height: 100vh;
-`;
-
-const WebsiteContent = styled.div`
-  flex: 1;
-  background-color: ${props => (props.dark ? "rgb(51,51,51)" : "white")};
-  padding-top: 1.5rem;
-`;
 
 export function Layout(props) {
   const { children, theme, page } = props;
@@ -62,3 +49,15 @@ export function Layout(props) {
     </Website>
   );
 }
+
+const Website = styled.div`
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+`;
+
+const WebsiteContent = styled.div`
+  flex: 1;
+  background-color: ${props => (props.dark ? "rgb(51,51,51)" : "white")};
+  padding-top: 1.5rem;
+`;
