@@ -92,7 +92,7 @@ function PhotoItem({ sharpPhoto, address, title }) {
 
 export const query = graphql`
   query PhotographerPageQuery {
-    allFlickrImage {
+    allFlickrImage(limit: 25) {
       edges {
         node {
           id
@@ -104,7 +104,6 @@ export const query = graphql`
           url_l
           height_l
           width_l
-          title
           localImage {
             id
             childImageSharp {
