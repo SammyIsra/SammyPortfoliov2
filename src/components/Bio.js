@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const Bio = styled.div`
-  width: 75%;
+  width: 85%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  @media screen and (min-width: 525px) {
+    width: 75%;
+  }
 `;
 
 export const BioTitle = styled.h2`
