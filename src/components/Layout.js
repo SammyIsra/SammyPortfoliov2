@@ -6,9 +6,7 @@ import { graphql, StaticQuery } from "gatsby";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-export function Layout(props) {
-  const { children, theme, page } = props;
-
+export function Layout({ children, theme, page }) {
   const graphqlQuery = graphql`
     query IndexLayoutQuery {
       site {

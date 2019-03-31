@@ -14,6 +14,7 @@ export default function PhotographerPage({ data }) {
     "My main subject is always people, which is why I enjoy portrait photography over any other. " +
     "That doesn't mean that I don't enjoy other kinds of photography! " +
     "I'm all for trying new styles and formats, you never know what your next passion will be.";
+
   return (
     <Layout theme="dark" page="photographer">
       <Bio>
@@ -30,8 +31,6 @@ export default function PhotographerPage({ data }) {
 }
 
 const StyledImg = styled(Img)`
-  /* max-width: 100%; */
-  /* max-height: 100%; */
   width: 15rem;
   height: 15rem;
   opacity: 1;
