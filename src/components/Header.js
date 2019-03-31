@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
+import { Link, graphql, StaticQuery } from "gatsby";
+import Img from "gatsby-image";
 
 //Aditional rules I can't fix w styled components ☹️
 import "./Header.css";
@@ -12,10 +13,7 @@ const HeaderContainer = styled.header`
   justify-content: center;
   background-repeat: no-repeat;
   background-size: cover;
-  ${props =>
-    props.image ? "background-image: url('" + props.image.large + "');" : null}
 `;
-// background-image: ${props => `url("${props.image})` || "none"};
 
 const HeaderMask = styled.div`
   margin-left: 0;
@@ -82,40 +80,39 @@ function SubtitleItem({ to, children }) {
 }
 
 export function Header({ dark, page }) {
-  const bgImages = {
-    photographer: [
-      {
-        large:
-          "https://c1.staticflickr.com/5/4164/33673946114_a8021829e8_h.jpg",
-        medium:
-          "https://c1.staticflickr.com/5/4164/33673946114_3aedbaedf2_b.jpg",
-        small: "https://c1.staticflickr.com/5/4164/33673946114_3aedbaedf2_c.jpg"
-      },
-      {
-        large:
-          "https://c2.staticflickr.com/6/5622/30348760064_f21efb6115_h.jpg",
-        medium:
-          "https://c2.staticflickr.com/6/5622/30348760064_275a99d1c9_b.jpg",
-        small: "https://c2.staticflickr.com/6/5622/30348760064_275a99d1c9_c.jpg"
-      },
-      {
-        large:
-          "https://c2.staticflickr.com/8/7301/27003100350_47e097bd83_h.jpg",
-        medium:
-          "https://c2.staticflickr.com/8/7301/27003100350_1c36f9bb9e_b.jpg",
-        small: "https://c2.staticflickr.com/8/7301/27003100350_1c36f9bb9e_c.jpg"
+  const graphQlQuery = graphql`
+    query headerImageQuery {
+      allBackgroundImage {
+        edges {
+          node {
+            title
+            for
+            localImage {
+              childImageSharp {
+                fluid(maxHeight: 10000) {
+                  ...GatsbyImageSharpFluid
+                  presentationWidth
+                }
+              }
+            }
+          }
+        }
       }
-    ],
-    developer: [],
-    home: []
-  };
-
-  /** Link of image used in background. is `undefined` if page has no image */
-  const imgLink =
-    bgImages[page][Math.floor(Math.random() * bgImages[page].length)];
+    }
+  `;
 
   return (
-    <HeaderContainer image={imgLink} className="Header">
+    <HeaderContainer className="Header">
+      <StaticQuery
+        query={graphQlQuery}
+        render={data => (
+          <HeaderImage
+            image={randomFromArray(
+              data.allBackgroundImage.edges.filter(x => x.node.for === page)
+            )}
+          />
+        )}
+      />
       <HeaderMask dark={dark}>
         <Link to="/">
           <Title dark={dark}>Sammy Israwi</Title>
@@ -128,4 +125,23 @@ export function Header({ dark, page }) {
       </HeaderMask>
     </HeaderContainer>
   );
+}
+
+function HeaderImage({ image }) {
+  return image ? (
+    <Img
+      style={{
+        position: "absolute",
+        zIndex: 0,
+        width: "100%",
+        height: "100vh"
+      }}
+      alt={image.node.title}
+      fluid={image.node.localImage.childImageSharp.fluid}
+    />
+  ) : null;
+}
+
+function randomFromArray(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
