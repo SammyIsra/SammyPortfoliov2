@@ -45,6 +45,7 @@ const PhotoGridStream = styled.div`
   margin: auto;
   max-width: 95%;
   display: grid;
+  justify-content: center;
   grid-gap: 0.35rem;
   grid-template-columns: repeat(auto-fit, 15rem);
   @media screen and (min-width: 900px) {
