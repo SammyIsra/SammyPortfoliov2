@@ -29,6 +29,24 @@ const backgroundImages = [
     title: "Detail of Mom's Work",
     url: "https://farm1.staticflickr.com/671/20806009693_ee94a66760_o.jpg",
     for: "photographer"
+  },
+  {
+    id: "RedAndBlackFrom_trianglify",
+    title: "Red and Black background from Trianglify",
+    url: "https://i.imgur.com/YOTcmry.png",
+    for: "developer"
+  },
+  {
+    id: "EtherealRainbow_trianglify",
+    title: "Ethereal Rainbow from Trianglify",
+    url: "https://i.imgur.com/2lHcvrN.png",
+    for: "developer"
+  },
+  {
+    id: "OrlandoMagic_trianglify",
+    title: "Orlando Magic-ish from Trianglify",
+    url: "https://i.imgur.com/XNhcUO4.png",
+    for: "developer"
   }
 ];
 
