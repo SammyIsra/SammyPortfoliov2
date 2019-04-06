@@ -1,6 +1,6 @@
 ---
 title: SammyIsA - Personal Portfolio 
-date: "2017-11-21"
+date: "2019-04-06"
 description: Portfolio website for myself as a developer and photographer, built on GatsbyJS.
 type: project
 published: true
@@ -13,7 +13,7 @@ The website is built with GatsbyJS and hosted in Surge. React was used for struc
 
 The posts are not hosted anywhere in particular. I realized that for Gatsby, making the posts Markdown files on the project was probably the easiest solution. I use Typora to edit the files.
 
-The pictures are pulled from Flickr, via a "proxy" that I set up in Node and is hosted in AWS. 
+The pictures are pulled from Flickr, via a serverless function hosted in Firebase. 
 
 ## Design 
 The design is mostly the same across the website. The header is shared but the theme changes. I wanted the Photographer page to be a showcase of my images and a way to bring more attention to my Flickr, which is why it only fetches a few images and not in their highest quality. The home is a small window to myself that doesn't offer a lot other than a landing page. 
