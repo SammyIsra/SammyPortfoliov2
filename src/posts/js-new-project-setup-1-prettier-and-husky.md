@@ -1,6 +1,6 @@
 ---
 type: media
-title: JS Project Setup: Code Quality is simple when you don't have to do anything 
+title: "JS Project Setup: Code Quality is simple when you don't have to do anything"
 platform: Dev.to
 link: https://dev.to/sammyisa/js-project-setup-code-quality-is-simple-when-you-dont-have-to-do-anything-523e
 date: "2019-02-08"
