@@ -2,6 +2,8 @@ import React from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components";
 
+import { Experiences } from "../components/Experiences";
+
 export default function SecretPage({ data }) {
   return (
     <SecretLayout>
@@ -12,6 +14,21 @@ export default function SecretPage({ data }) {
         <div>Build Time:&nbsp;</div>
         <div>{new Date(data.site.buildTime).toString()}</div>
       </SimpleField>
+      <SimpleField>
+        <div>Total Posts&nbsp;</div>
+        <div>{data.allMarkdownRemark.edges.length}</div>
+      </SimpleField>
+      <SimpleField>
+        <div>Unpublished Posts&nbsp;</div>
+        <div>
+          {
+            data.allMarkdownRemark.edges.filter(
+              edge => !edge.node.frontmatter.published
+            ).length
+          }
+        </div>
+      </SimpleField>
+      <Experiences filterPrivate={false} verbose={true} />
     </SecretLayout>
   );
 }
@@ -32,9 +49,18 @@ const SimpleField = styled.div`
 `;
 
 export const query = graphql`
-  query BuildTimeQuery {
+  query SecretPageQuery {
     site {
       buildTime
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          frontmatter {
+            published
+          }
+        }
+      }
     }
   }
 `;
