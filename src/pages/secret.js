@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import styled from "styled-components";
 
 import { Experiences } from "../components/Experiences";
+import { Red, Blue, Bold } from "../components/Styles";
 
 export default function SecretPage({ data }) {
   return (
@@ -12,21 +13,27 @@ export default function SecretPage({ data }) {
       <br />
       <SimpleField>
         <div>Build Time:&nbsp;</div>
-        <div>{new Date(data.site.buildTime).toString()}</div>
-      </SimpleField>
-      <SimpleField>
-        <div>Total Posts&nbsp;</div>
-        <div>{data.allMarkdownRemark.edges.length}</div>
-      </SimpleField>
-      <SimpleField>
-        <div>Unpublished Posts&nbsp;</div>
         <div>
-          {
-            data.allMarkdownRemark.edges.filter(
-              edge => !edge.node.frontmatter.published
-            ).length
-          }
+          <Bold>{new Date(data.site.buildTime).toString()}</Bold>
         </div>
+      </SimpleField>
+      <SimpleField>
+        <div>Total Posts:&nbsp;</div>
+        <Blue>
+          <Bold>{data.allMarkdownRemark.edges.length}</Bold>
+        </Blue>
+      </SimpleField>
+      <SimpleField>
+        <div>Unpublished Posts:&nbsp;</div>
+        <Red>
+          <Bold>
+            {
+              data.allMarkdownRemark.edges.filter(
+                edge => !edge.node.frontmatter.published
+              ).length
+            }
+          </Bold>
+        </Red>
       </SimpleField>
       <Experiences filterPrivate={false} verbose={true} />
     </SecretLayout>

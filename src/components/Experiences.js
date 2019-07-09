@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { graphql, StaticQuery, Link } from "gatsby";
 
+import { Green, Red, Bold } from "./Styles";
+
 export class Experiences extends React.Component {
   //All filters are active to start with because
   // we display all posts of type == something on the filters
@@ -19,7 +21,6 @@ export class Experiences extends React.Component {
   render() {
     //Get the posts from the query
     const { filterPrivate, verbose } = this.props;
-    console.log({ filterPrivate, verbose });
 
     const experiencesQuery = graphql`
       query PostsData {
@@ -54,11 +55,6 @@ export class Experiences extends React.Component {
               setFilters={this.setFilters}
             />
             <hr />
-            {console.log(
-              data.allMarkdownRemark.edges
-                .map(edge => edge.node)
-                .filter(post => !filterPrivate || post.frontmatter.published)
-            )}
             {data.allMarkdownRemark.edges
               .map(edge => edge.node)
               .filter(post => !filterPrivate || post.frontmatter.published)
@@ -101,7 +97,15 @@ function DeveloperPost({
     >
       <PostContainer>
         {verbose &&
-          (published ? <Green>PUBLISHED</Green> : <Red>UNPUBLISHED</Red>)}
+          (published ? (
+            <Green>
+              <Bold>PUBLISHED</Bold>
+            </Green>
+          ) : (
+            <Red>
+              <Bold>UNPUBLISHED</Bold>
+            </Red>
+          ))}
         <PostTitle>{title}</PostTitle>&nbsp;
         <PostType>{type}</PostType>
         <PostDescription>{description}</PostDescription>
@@ -210,14 +214,4 @@ const FilterWrapper = styled.div`
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
-`;
-
-const Green = styled.div`
-  color: rgb(34, 128, 50);
-  font-weight: bold;
-`;
-
-const Red = styled.div`
-  color: rgb(133, 16, 41);
-  font-weight: bold;
 `;
