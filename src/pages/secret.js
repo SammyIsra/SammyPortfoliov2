@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import styled from "styled-components";
 
 import { Experiences } from "../components/Experiences";
@@ -8,6 +8,7 @@ import { Red, Blue, Bold } from "../components/Styles";
 export default function SecretPage({ data }) {
   return (
     <SecretLayout>
+      <Link to="/">Go back home</Link>
       <h1>Secret Page</h1>
       <p>You probably should not be here unless you are Sammy.</p>
       <br />
