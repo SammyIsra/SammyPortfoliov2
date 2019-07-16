@@ -19,7 +19,7 @@ export class Experiences extends React.Component {
   };
 
   render() {
-    //Get the posts from the query
+    //Get whether we filter out private posts, and if we want to be verbose about the post
     const { filterPrivate, verbose } = this.props;
 
     const experiencesQuery = graphql`
@@ -58,6 +58,9 @@ export class Experiences extends React.Component {
             {data.allMarkdownRemark.edges
               .map(edge => edge.node)
               .filter(post => !filterPrivate || post.frontmatter.published)
+              .filter(post =>
+                this.state.activeFilters.includes(post.frontmatter.type)
+              )
               .map(post => (
                 <DeveloperPost
                   verbose={verbose}
