@@ -56,11 +56,15 @@ export class Experiences extends React.Component {
             />
             <hr />
             {data.allMarkdownRemark.edges
+              // Get jsut to get the nodes from the edges
               .map(edge => edge.node)
+              // Filter out unpublished ones IF we ahve been told to do so
               .filter(post => !filterPrivate || post.frontmatter.published)
+              // Filter out based on selected types
               .filter(post =>
                 this.state.activeFilters.includes(post.frontmatter.type)
               )
+              // Render the posts
               .map(post => (
                 <DeveloperPost
                   verbose={verbose}

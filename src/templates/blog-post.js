@@ -26,6 +26,14 @@ function BlogPost({ data }) {
         <MediaSubHeader metadata={post.frontmatter} />
       )}
 
+      {post.frontmatter.type === "project" && (
+        <ProjectSubHeader
+          title={post.frontmatter.title}
+          date={post.frontmatter.date}
+          link={post.frontmatter.link}
+        />
+      )}
+
       <PostBody dangerouslySetInnerHTML={{ __html: post.html }} />
     </PostContainer>
   );
@@ -53,6 +61,17 @@ function MediaSubHeader({ metadata }) {
       <What>{title}</What>
       <From>{fromDate}</From>
       <a href={link}>Link to {platform}</a>
+    </div>
+  );
+}
+
+function ProjectSubHeader({ title, date, link }) {
+  const fromDate = moment(date).format("MMMM YYYY");
+  return (
+    <div>
+      <What>{title}</What>
+      <From>{fromDate}</From>
+      <a href={link}>Link to Repo</a>
     </div>
   );
 }
@@ -139,7 +158,6 @@ export const query = graphql`
         current
         type
         link
-        platform
       }
     }
   }
