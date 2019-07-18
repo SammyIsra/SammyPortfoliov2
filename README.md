@@ -1,4 +1,6 @@
-[sammyis.me](https://sammyis.me)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fae7b353-2fe2-466e-90af-f16d38e6fe5d/deploy-status)](https://app.netlify.com/sites/optimistic-goodall-a71eb1/deploys)
+
+Check the website at [sammyis.me](https://sammyis.me)
 
 ----
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->

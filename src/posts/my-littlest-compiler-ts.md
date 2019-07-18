@@ -5,7 +5,7 @@ platform: Dev.to
 date: "2019-06-29"
 published: false
 description: Writing a super tiny compiler on TypeScript that transpiles Lisp style code to C style code
-github: https://github.com/SammyIsra/the-super-tiny-compiler
+link: https://github.com/SammyIsra/the-super-tiny-compiler
 ---
 
 ## What is it?
