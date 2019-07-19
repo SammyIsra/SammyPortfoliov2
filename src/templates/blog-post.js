@@ -19,6 +19,7 @@ function BlogPost({ data }) {
           to={post.frontmatter.to}
           current={post.frontmatter.current}
           location={post.frontmatter.location}
+          description={post.frontmatter.description}
         />
       )}
 
@@ -31,6 +32,8 @@ function BlogPost({ data }) {
           title={post.frontmatter.title}
           date={post.frontmatter.date}
           link={post.frontmatter.link}
+          platform={post.frontmatter.platform}
+          description={post.frontmatter.description}
         />
       )}
 
@@ -39,12 +42,22 @@ function BlogPost({ data }) {
   );
 }
 
-function WorkSubHeader({ employer, position, from, to, current, location }) {
+/** Experience subheader for Work experiences */
+function WorkSubHeader({
+  employer,
+  position,
+  from,
+  to,
+  current,
+  location,
+  description
+}) {
   const fromDate = moment(from).format("MMMM YYYY");
   const toDate = (current ? moment() : moment(to)).format("MMMM YYYY");
   return (
     <div>
       <What>{position}</What>
+      <Description>{description}</Description>
       <At>{employer}</At>
       <Where> | {location}</Where>
       <From>{fromDate}</From>
@@ -53,27 +66,39 @@ function WorkSubHeader({ employer, position, from, to, current, location }) {
   );
 }
 
+/** Experience subheader for Media experiences */
 function MediaSubHeader({ metadata }) {
-  const { link, platform, title, date } = metadata;
+  const { link, platform, title, date, description } = metadata;
   const fromDate = moment(date).format("MMMM YYYY");
   return (
     <div>
       <What>{title}</What>
+      <Description>{description}</Description>
       <From>{fromDate}</From>
-      <a href={link}>Link to {platform}</a>
+      <ExperienceLink link={link} platform={platform} />
     </div>
   );
 }
 
-function ProjectSubHeader({ title, date, link }) {
+/** Experience subheader for Project experiences */
+function ProjectSubHeader({ title, date, link, platform, description }) {
+  console.log("Project platform: ", platform);
   const fromDate = moment(date).format("MMMM YYYY");
   return (
     <div>
       <What>{title}</What>
+      <Description>{description}</Description>
       <From>{fromDate}</From>
-      <a href={link}>Link to Repo</a>
+      <ExperienceLink link={link} platform={platform} />
     </div>
   );
+}
+
+/**
+ * Shortcut to generate the external link to where a project/media is actually located
+ */
+function ExperienceLink({ link, platform }) {
+  return link && <a href={link}>Link to {platform || "Repo"}</a>;
 }
 
 const What = styled.h2`
@@ -112,6 +137,11 @@ const To = styled.div`
   }
 `;
 
+const Description = styled.div`
+  color: rgb(48, 48, 48);
+  font-size: 1.2rem;
+`;
+
 const Current = () => (
   <div
     style={{
@@ -148,6 +178,7 @@ export const query = graphql`
       html
       frontmatter {
         title
+        description
         date
         to
         from
@@ -155,6 +186,7 @@ export const query = graphql`
         location
         employer
         position
+        platform
         current
         type
         link
