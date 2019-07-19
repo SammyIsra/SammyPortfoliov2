@@ -102,7 +102,7 @@ function ExperienceLink({ link, platform }) {
 }
 
 const What = styled.h2`
-  line-height: 2.5rem;
+  line-height: 3.25rem;
   font-size: 2.5rem;
   margin-bottom: 0;
 `;
