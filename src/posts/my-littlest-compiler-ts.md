@@ -3,7 +3,7 @@ title: The Littlest Compiler in TypeScript
 type: project
 platform: GitHub
 date: "2019-06-29"
-published: false
+published: true
 description: Writing a super tiny compiler on TypeScript that transpiles Lisp style code to C style code
 link: https://github.com/SammyIsra/the-super-tiny-compiler
 ---
