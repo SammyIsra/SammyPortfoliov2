@@ -117,7 +117,7 @@ const At = styled.div`
   display: inline;
   &:before {
     content: "@ ";
-    color: rgb(204, 204, 204);
+    color: rgb(117, 117, 117);
   }
 `;
 
@@ -125,7 +125,7 @@ const From = styled.div`
   font-size: 0.9rem;
   &:before {
     content: "from: ";
-    color: rgb(204, 204, 204);
+    color: rgb(117, 117, 117);
   }
 `;
 
@@ -133,7 +133,7 @@ const To = styled.div`
   font-size: 0.9rem;
   &:before {
     content: "to: ";
-    color: rgb(214, 214, 214);
+    color: rgb(117, 117, 117);
   }
 `;
 
@@ -145,7 +145,7 @@ const Description = styled.div`
 const Current = () => (
   <div
     style={{
-      color: "rgb(204, 204, 204)",
+      color: "rgb(117, 117, 117)",
       fontSize: "0.90rem"
     }}
   >
