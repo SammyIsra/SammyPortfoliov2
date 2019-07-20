@@ -52,16 +52,14 @@ function WorkSubHeader({
   location,
   description
 }) {
-  const fromDate = moment(from).format("MMMM YYYY");
-  const toDate = (current ? moment() : moment(to)).format("MMMM YYYY");
   return (
     <div>
       <What>{position}</What>
-      <Description>{description}</Description>
       <At>{employer}</At>
       <Where> | {location}</Where>
-      <From>{fromDate}</From>
-      {current ? <Current /> : <To>{toDate}</To>}
+      <Description>{description}</Description>
+      <From>{moment(from).format("MMMM YYYY")}</From>
+      {current ? <Current /> : <To>{moment(to).format("MMMM YYYY")}</To>}
     </div>
   );
 }
